@@ -90,7 +90,7 @@ public class ProductoService implements ProductoRepository {
 
     @Override
     public <S extends Producto> S save(S entity) {
-        return null;
+        return productoRepository.save(entity);
     }
 
     @Override

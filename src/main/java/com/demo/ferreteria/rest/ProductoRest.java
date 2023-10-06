@@ -3,9 +3,11 @@ package com.demo.ferreteria.rest;
 import com.demo.ferreteria.modelo.Producto;
 import com.demo.ferreteria.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -33,6 +35,18 @@ public class ProductoRest {
     @GetMapping("/categoria/{idCategoria}")
     private ResponseEntity<List<Producto>> getProductoByIdCategoria(@PathVariable Long idCategoria){
         return ResponseEntity.ok(productoService.findAllByIdCategoria(idCategoria));
+    }
+
+    /*Crea un nuevo producto*/
+    @PostMapping
+    private ResponseEntity<Producto> createNewProduct(@RequestBody Producto producto){
+        try{
+            Producto productoCreado = productoService.save(producto);
+            return ResponseEntity.created(new URI("/productos/"+productoCreado.getId())).body(productoCreado);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
     }
 
 }

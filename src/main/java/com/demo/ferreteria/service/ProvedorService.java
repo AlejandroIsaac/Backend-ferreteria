@@ -72,7 +72,7 @@ public class ProvedorService implements ProvedorRepository {
 
     @Override
     public <S extends Provedor> S save(S entity) {
-        return null;
+        return provedorRepository.save(entity);
     }
 
     @Override

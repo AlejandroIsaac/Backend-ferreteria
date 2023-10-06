@@ -71,7 +71,7 @@ public class CategoriaService implements CategoriaRepository {
 
     @Override
     public <S extends Categoria> S save(S entity) {
-        return null;
+        return categoriaRepository.save(entity);
     }
 
     @Override

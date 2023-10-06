@@ -12,7 +12,7 @@ public class Producto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long codigo;
+    private String codigo;
     private String nombre;
     private String descripcion;
     private String especificacion;
